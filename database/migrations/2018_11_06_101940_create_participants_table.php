@@ -15,10 +15,13 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('workshop_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('surname');
             $table->string('email')->unique();
             $table->timestamps();
+
+            $table->foreign('workshop_id')->references('id')->on('workshops');
         });
     }
 
